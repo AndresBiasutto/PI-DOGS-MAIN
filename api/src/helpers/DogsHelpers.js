@@ -32,7 +32,8 @@ const dogFilterBDD = (allDogsBDD) => {
             weight: dog.weight,
             height: dog.height,
             life_span: dog.life_span,
-            created: true
+            created: true,
+            temperament: dog.Temperaments && dog.Temperaments.length > 0 ? dog.Temperaments[0].name : null
         }
     })
 }

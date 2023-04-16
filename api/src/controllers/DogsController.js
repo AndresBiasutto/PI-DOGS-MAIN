@@ -8,7 +8,7 @@ const getAllDogs = async () => {
     const allDogsBDD = await Dogs.findAll({
         include: {
             model: Temperaments,
-            attributes: ["id", "name"],
+            attributes: ["name"],
         },
     })
     const allDogsBddFilter= dogFilterBDD(allDogsBDD)
@@ -18,7 +18,12 @@ const getAllDogs = async () => {
 const getDogById = async (id, source) => {
     const theDog = source == "api"
         ? dogFilter((await axios.get(`https://api.thedogapi.com/v1/breeds/${id}`)).data)
-        : Dogs.findByPk(id)
+        : Dogs.findByPk(id, {
+            include:{
+                model: Temperaments,
+                attributes:["name"]
+            }
+        })
 
     return theDog;
 }
@@ -44,7 +49,23 @@ const getDogByName = async (name) => {
         throw new Error(`No se encontró ningún perro llamado ${name}`);
     }
 }
-const createDog = async (name, image, weight, height, life_span, temperament) => {
 
+const createDog = async (name, image, weight, height, life_span, temperament) => {
+    const newDog = await Dogs.create({ name, image, weight, height, life_span });
+
+    if (temperament) {
+      await newDog.setTemperaments(temperament)
+    }
+    const dogWithTemperament = await Dogs.findByPk(newDog.id, {
+      include: {
+        model: Temperaments,
+        attributes: ['name'],
+        through: {
+          attributes: []
+        }
+      }
+    });
+    return dogWithTemperament;
 }
+
 module.exports = { getAllDogs, getDogById, getDogByName, createDog };
