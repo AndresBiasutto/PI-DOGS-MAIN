@@ -44,6 +44,10 @@ export const validateForm = (form) => {
         errors.minLife_span = "el peso minimo no puede exeder al maximo"
         errors.maxLife_span = "el peso minimo no puede exeder al maximo"
     }
-
+    if (!form.temperament === "temperamentos") {
+        errors.temperament= "debes elejir un temperamento"
+    }else {
+        errors.temperament=""
+    }
     return errors;
 };

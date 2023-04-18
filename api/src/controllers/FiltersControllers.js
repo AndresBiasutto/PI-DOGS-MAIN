@@ -1,5 +1,5 @@
 const { getAllDogs } = require("./DogsController")
-const { filterDog}= require("../helpers/FiltersHelpers")
+const { filterDog, filterDogaz}= require("../helpers/FiltersHelpers")
 
 const filterOrigin = async (origin) => {
     const allDogs = await getAllDogs()
@@ -16,5 +16,12 @@ const orderByWeight = async (orderby) => {
 
     return order
 }
+const namesInOrder= async (azorder)=>{
+     const allDogs= await getAllDogs()
+     const dogsReady= filterDogaz(allDogs)
 
-module.exports = { filterOrigin, orderByWeight }
+     const order= azorder === "az"? dogsReady.sort((a, b) => a.name.localeCompare(b.name)):dogsReady.sort((a, b) => b.name.localeCompare(a.name))
+
+    return order
+}
+module.exports = { filterOrigin, orderByWeight, namesInOrder}

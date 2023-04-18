@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const dogsFilter = async (apiData) => {
     return await apiData.map(dog => {
         return {
@@ -12,15 +14,18 @@ const dogsFilter = async (apiData) => {
         }
     })
 }
-const dogFilter = (apiData) => {
+const dogFilter = async (apiData) => {
+    const allDogs = (await axios.get(`https://api.thedogapi.com/v1/breeds`)).data;
+    const dog= allDogs.find(dog=> dog.id=== apiData.id)
+    const dogImage= dog.image.url
     return {
         id: apiData.id,
-        name:apiData.name,
-        image:apiData.reference_image_id,
-        weight:apiData.weight.metric,
-        height:apiData.height.metric,
-        life_span:apiData.life_span,
-        created:false
+        name: apiData.name,
+        image: dogImage,
+        weight: apiData.weight.metric,
+        height: apiData.height.metric,
+        life_span: apiData.life_span,
+        created: false
     }
 }
 const dogFilterBDD = (allDogsBDD) => {
@@ -37,18 +42,18 @@ const dogFilterBDD = (allDogsBDD) => {
         }
     })
 }
-const dogFilterBDDbyName=(allDogsBDD)=>{
-    return allDogsBDD.map((dog)=>{
+const dogFilterBDDbyName = (allDogsBDD) => {
+    return allDogsBDD.map((dog) => {
         return {
             id: dog.id,
-            name:dog.name,
-            image:dog.reference_image_id,
-            weight:dog.weight.metric,
-            height:dog.height.metric,
-            life_span:dog.life_span,
-            created:true
+            name: dog.name,
+            image: dog.reference_image_id,
+            weight: dog.weight.metric,
+            height: dog.height.metric,
+            life_span: dog.life_span,
+            created: true
         }
     })
 }
 
-module.exports = { dogsFilter, dogFilter, dogFilterBDD , dogFilterBDDbyName };
+module.exports = { dogsFilter, dogFilter, dogFilterBDD, dogFilterBDDbyName };

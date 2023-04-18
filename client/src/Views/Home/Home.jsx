@@ -1,4 +1,9 @@
 import CardsContainer from "../../Components/CardsContainer/CardsContainer";
+import SearchBar from "../../Components/SearchBar/SearchBar";
+import OriginFilter from "../../Components/OriginFilter/OriginFilter";
+import OrderFilter from "../../Components/OrderFilter/OrderFilter";
+import AzFilter from "../../Components/AzFilter/AzFilter";
+import TemperamentsFilter from "../../Components/TemperamentsFilter/TemperamentsFilter";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getDogs } from "../../redux/actions";
@@ -11,7 +16,11 @@ const Home = () => {
     },[dispatch])
     return (
         <div>
-            <h1>soy la Home page</h1>
+            <SearchBar />
+            <OriginFilter />
+            <OrderFilter />
+            <AzFilter />
+            <TemperamentsFilter />
             <CardsContainer />
         </div>
     )

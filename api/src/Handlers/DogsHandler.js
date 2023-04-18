@@ -40,5 +40,5 @@ const postDogHandler = async (req, res) => {
 module.exports = {
   getDogsHandler,
   getDogByIdHandler,
-  postDogHandler
+  postDogHandler,
 };

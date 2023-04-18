@@ -1,8 +1,12 @@
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react";
 import { useState } from "react";
+import { getTemperaments } from "../../redux/actions";
 import { validateForm } from "./FormValidator";
 
 const Form = () => {
+    const dispatch= useDispatch()
     const [form, setForm] = useState({
         name: "",
         image: "",
@@ -12,7 +16,7 @@ const Form = () => {
         maxHeight: "",
         minLife_span: "",
         maxLife_span: "",
-        temperament: ""
+        temperament: 0
     })
     const [errors, setErrors] = useState({
         name: "",
@@ -31,6 +35,7 @@ const Form = () => {
         const value = e.target.value;
         setForm({ ...form, [property]: value })
         setErrors(validateForm({ ...form, [property]: value }))
+        console.log(e.target.value)
     }
 
     const formatDog = (form) => {
@@ -46,13 +51,19 @@ const Form = () => {
     }
 
 
+    useEffect(()=>{
+        dispatch(getTemperaments())
+    },[dispatch])
+
+    const temperaments= useSelector(state=>state.temperaments)
+
 
 
 
     const submitHandler = (e) => {
         e.preventDefault()
         axios.post(`http://localhost:3001/dogs/`, formatDog(form)).then(res => alert("perro creado con exito"))
-        console.log(formatDog(form))
+
     }
     return (
         <div>
@@ -98,11 +109,19 @@ const Form = () => {
                     <input type="number" value={form.maxLife_span} onChange={changeHandler} name="maxLife_span" />
                     {errors.maxLife_span && <span>{errors.maxLife_span} </span>}
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor="">temperament</label>
                     <input type="text" value={form.temperament} onChange={changeHandler} name="temperament" />
                     {errors.temperament && <span>{errors.temperament} </span>}
-                </div>
+                </div> */}
+                <label htmlFor="temperament">temperament</label>
+                <select id="temperament" onChange={changeHandler}>
+                    <option value="temperamentos"  onChange={changeHandler} >temperamentos</option>
+                    {temperaments.map(temperament => (
+                        <option key={temperament.id} value={temperament.id} >{temperament.name}</option>
+                    ))}
+                </select>
+                {errors.temperament && <span>{errors.temperament} </span>}
                 <button type="submit">SEND</button>
             </form>
         </div>

@@ -1,18 +1,30 @@
-import { GET_DOG, GET_DOGS } from "./actions";
+import { GET_DOG, GET_DOGS, GET_TEMPERAMENTS, GET_DOG_BY_NAME, GET_ORDER, GET_ORIGIN, GET_ORDER_AZ } from "./actions";
 
-const initialState= {
-    dogs:[],
-    dog:{}
+const initialState = {
+    dogs: [],
+    dog: {},
+    temperaments: [],
+    dogName: []
 };
 
-const rootReducer=(state= initialState, action)=>{
+const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_DOGS:
-            return {...state, dogs: action.payload}
+            return { ...state, dogs: action.payload }
         case GET_DOG:
-            return {...state, dog: action.payload}
+            return { ...state, dog: action.payload }
+        case GET_TEMPERAMENTS:
+            return { ...state, temperaments: action.payload }
+        case GET_DOG_BY_NAME:
+            return { ...state, dogName: action.payload }
+        case GET_ORDER:
+            return { ...state, dogs: action.payload }
+        case GET_ORIGIN:
+            return {...state, dogs: action.payload}
+        case GET_ORDER_AZ:
+            return {...state, dogs: action.payload}
         default:
-            return {...state};
+            return { ...state };
     }
 }
 
