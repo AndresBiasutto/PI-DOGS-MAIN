@@ -7,6 +7,8 @@ export const GET_DOG_BY_NAME= "GET_DOG_BY_NAME"
 export const GET_ORDER= "GET_ORDER"
 export const GET_ORIGIN="GET_ORIGIN"
 export const GET_ORDER_AZ="GET_ORDER_AZ"
+export const GET_DOG_BY_TEMPERAMENT="GET_DOG_BY_TEMPERAMENT"
+export const CLEAN_DETAIL="CLEAN_DETAIL"
 
 export const getDogs = ()=> {
     return async (dispatch)=>{
@@ -50,4 +52,13 @@ export const getOrderAz= (azorder)=>{
         const apidata= (await axios.get(`http://localhost:3001/dogs/azorder?azorder=${azorder}`)).data
         dispatch({type: GET_ORDER_AZ, payload: apidata})
     }
+}
+export const getDogsByTemperament=(temporder)=>{
+    return async (dispatch)=>{
+        const apidata= (await axios.get(`http://localhost:3001/dogs/temporder?temporder=${temporder}`)).data
+        dispatch({type: GET_DOG_BY_TEMPERAMENT, payload: apidata})
+    }
+}
+export const cleanDetail=()=>{
+    return {type:CLEAN_DETAIL}
 }

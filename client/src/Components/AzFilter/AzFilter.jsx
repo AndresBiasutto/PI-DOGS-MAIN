@@ -5,7 +5,6 @@ const AzFilter = () => {
     const dispatch = useDispatch()
 
     const handleStatus = (event) => {
-        console.log(event.target.value)
         if (event.target.value === "default") {
             dispatch(getDogs())
         }

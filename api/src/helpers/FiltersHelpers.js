@@ -27,4 +27,5 @@ const filterDogaz = (allDogs) => {
     return dogsReady
 }
 
+
 module.exports = { filterDog, filterDogaz }

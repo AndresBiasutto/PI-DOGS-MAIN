@@ -1,4 +1,4 @@
-import { getDog } from "../../redux/actions";
+import { getDog, cleanDetail } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -10,6 +10,7 @@ const Detail = () => {
     const dog = useSelector(state => state.dog)
     useEffect(() => {
         dispatch(getDog(id))
+        return ()=> dispatch(cleanDetail())
     }, [dispatch, id])
 
     return (

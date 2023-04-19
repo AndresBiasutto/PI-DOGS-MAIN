@@ -24,4 +24,17 @@ const namesInOrder= async (azorder)=>{
 
     return order
 }
-module.exports = { filterOrigin, orderByWeight, namesInOrder}
+const findTemperament= async(temporder)=>{
+    const allDogs= await getAllDogs()
+    const dogsReady= filterDogaz(allDogs)
+    const listo= []
+    for (let i = 0; i < dogsReady.length; i++) {
+        if (dogsReady[i].temperament && dogsReady[i].temperament.includes(temporder)) {
+            listo.push(dogsReady[i])
+        }
+    }
+    //const listo=dogsReady[95].temperament.includes(temporder)
+
+    return listo
+}
+module.exports = { filterOrigin, orderByWeight, namesInOrder, findTemperament}

@@ -1,4 +1,4 @@
-const { filterOrigin, orderByWeight, namesInOrder } = require("../controllers/FiltersControllers")
+const { filterOrigin, orderByWeight, namesInOrder, findTemperament } = require("../controllers/FiltersControllers")
 
 const getOriginHandler = async (req, res) => {
     const { origin } = req.query;
@@ -29,4 +29,13 @@ const getAZOrderHandler =async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 }
-module.exports = { getOriginHandler, getOrderHandler, getAZOrderHandler }
+const getTempOrderHandler= async (req, res)=>{
+    const { temporder } = req.query
+    try {
+        const dogTemperament= await findTemperament(temporder)
+        res.status(200).json(dogTemperament)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+module.exports = { getOriginHandler, getOrderHandler, getAZOrderHandler,getTempOrderHandler }

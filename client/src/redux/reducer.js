@@ -1,4 +1,4 @@
-import { GET_DOG, GET_DOGS, GET_TEMPERAMENTS, GET_DOG_BY_NAME, GET_ORDER, GET_ORIGIN, GET_ORDER_AZ } from "./actions";
+import { GET_DOG, GET_DOGS, GET_TEMPERAMENTS, GET_DOG_BY_NAME, GET_ORDER, GET_ORIGIN, GET_ORDER_AZ,GET_DOG_BY_TEMPERAMENT, CLEAN_DETAIL } from "./actions";
 
 const initialState = {
     dogs: [],
@@ -23,6 +23,10 @@ const rootReducer = (state = initialState, action) => {
             return {...state, dogs: action.payload}
         case GET_ORDER_AZ:
             return {...state, dogs: action.payload}
+        case GET_DOG_BY_TEMPERAMENT:
+            return {...state, dogs: action.payload}
+        case CLEAN_DETAIL:
+            return {...state, dog: {}}
         default:
             return { ...state };
     }
