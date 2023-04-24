@@ -4,9 +4,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getTemperaments } from "../../redux/actions";
 import { validateForm } from "./FormValidator";
+import style from "./Form.module.css"
 
 const Form = () => {
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
+    const [selectedTemperamentId, setSelectedTemperamentId] = useState(0);
     const [form, setForm] = useState({
         name: "",
         image: "",
@@ -35,7 +37,6 @@ const Form = () => {
         const value = e.target.value;
         setForm({ ...form, [property]: value })
         setErrors(validateForm({ ...form, [property]: value }))
-        console.log(e.target.value)
     }
 
     const formatDog = (form) => {
@@ -51,11 +52,11 @@ const Form = () => {
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getTemperaments())
-    },[dispatch])
+    }, [dispatch])
 
-    const temperaments= useSelector(state=>state.temperaments)
+    const temperaments = useSelector(state => state.temperaments)
 
 
 
@@ -63,66 +64,89 @@ const Form = () => {
     const submitHandler = (e) => {
         e.preventDefault()
         axios.post(`http://localhost:3001/dogs/`, formatDog(form)).then(res => alert("perro creado con exito"))
-
+        console.log(formatDog(form))
     }
     return (
-        <div>
-            <h1>soy la Form page</h1>
-            <form onSubmit={submitHandler}>
-                <div>
-                    <label htmlFor="name">name</label>
-                    <input type="text" value={form.name} onChange={changeHandler} name="name" />
-                    {errors.name && <span>{errors.name} </span>}
+        <div className={style.container}>
+            <form onSubmit={submitHandler} className={style.form}>
+
+                <div className={style.inputForm}>
+                    <input type="text" value={form.name} onChange={changeHandler} name="name" placeholder="Dog name" className={style.input} />
+                    {errors.name && <span className={style.span}>{errors.name} </span>}
                 </div>
-                <div>
-                    <label htmlFor="image">image</label>
-                    <input type="url" value={form.image} onChange={changeHandler} name="image" />
-                    {errors.image && <span>{errors.image} </span>}
+
+                <div className={style.inputForm}>
+                    <input type="url" value={form.image} onChange={changeHandler} name="image" placeholder="Image url" className={style.input} />
+                    {errors.image && <span className={style.span}>{errors.image} </span>}
                 </div>
-                <div>
-                    <label htmlFor="minWeight">Min weight</label>
-                    <input type="number" value={form.minWeight} onChange={changeHandler} name="minWeight" />
-                    {errors.minWeight && <span>{errors.minWeight} </span>}
+
+                <div className={style.formGrup}>
+                    <div className={style.inputForm}>
+                        <div className={style.inputDetail}>
+                            <input type="number" value={form.minWeight} onChange={changeHandler} name="minWeight" placeholder="min Weight Kg" className={`${style.input} ${style.num}`} />
+                        </div>
+                        {errors.minWeight && <span className={style.span}>{errors.minWeight} </span>}
+                    </div>
+                    <div className={style.inputForm}>
+                        <div className={style.inputDetail}>
+                            <input type="number" value={form.maxWeight} onChange={changeHandler} name="maxWeight" placeholder="max Weight Kg" className={`${style.input} ${style.num}`} />
+                        </div>
+                        {errors.maxWeight && <span className={style.span}>{errors.maxWeight} </span>}
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="maxWeight">maxWeight</label>
-                    <input type="number" value={form.maxWeight} onChange={changeHandler} name="maxWeight" />
-                    {errors.maxWeight && <span>{errors.maxWeight} </span>}
+
+                <div className={style.formGrup}>
+                    <div className={style.inputForm}>
+                        <div className={style.inputDetail}>
+                            <input type="number" value={form.minHeight} onChange={changeHandler} name="minHeight" placeholder="min Height Cm" className={`${style.input} ${style.num}`} />
+                        </div>
+                        {errors.minHeight && <span className={style.span}>{errors.minHeight} </span>}
+                    </div>
+                    <div className={style.inputForm}>
+
+                        <div className={style.inputDetail}>
+                            <input type="number" value={form.maxHeight} onChange={changeHandler} name="maxHeight" placeholder="max Height Cm" className={`${style.input} ${style.num}`} />
+                            {errors.maxHeight && <span className={style.span}>{errors.maxHeight} </span>}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="minHeight">Min Height</label>
-                    <input type="number" value={form.minHeight} onChange={changeHandler} name="minHeight" />
-                    {errors.minHeight && <span>{errors.minHeight} </span>}
+
+                <div className={style.formGrup}>
+                    <div className={style.inputForm}>
+                        <div className={style.inputDetail}>
+                            <input type="number" value={form.minLife_span} onChange={changeHandler} name="minLife_span" placeholder="min Life span" className={`${style.input} ${style.num}`} />
+                        </div>
+                        {errors.minLife_span && <span className={style.span}>{errors.minLife_span} </span>}
+                    </div>
+                    <div className={style.inputForm}>
+                        <div className={style.inputDetail}>
+                            <input type="number" value={form.maxLife_span} onChange={changeHandler} name="maxLife_span" placeholder="max Life span" className={`${style.input} ${style.num}`} />
+                        </div>
+
+                        {errors.maxLife_span && <span className={style.span}>{errors.maxLife_span} </span>}
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="maxHeight">maxHeight</label>
-                    <input type="number" value={form.maxHeight} onChange={changeHandler} name="maxHeight" />
-                    {errors.maxHeight && <span>{errors.maxHeight} </span>}
+
+                <div className={style.inputForm}>
+                    <select
+                        value={form.temperament}
+                        onChange={(e) => {
+                            changeHandler(e);
+                            setSelectedTemperamentId(Number(e.target.value)); // Convertir a número
+                        }}
+                        name="temperament"
+                        className={style.input}
+                    >
+                        <option value="">-- Select a temperament --</option>
+                        {temperaments.map((temperament) => (
+                            <option key={temperament.id} value={temperament.id}> {/* Usar el id como valor */}
+                                {temperament.name}
+                            </option>
+                        ))}
+                    </select>
+                    {errors.temperament && <span className={style.span}>{errors.temperament} </span>}
                 </div>
-                <div>
-                    <label htmlFor="minLife_span">minLife_span</label>
-                    <input type="number" value={form.minLife_span} onChange={changeHandler} name="minLife_span" />
-                    {errors.minLife_span && <span>{errors.minLife_span} </span>}
-                </div>
-                <div>
-                    <label htmlFor="maxLife_span">maxLife_span</label>
-                    <input type="number" value={form.maxLife_span} onChange={changeHandler} name="maxLife_span" />
-                    {errors.maxLife_span && <span>{errors.maxLife_span} </span>}
-                </div>
-                {/* <div>
-                    <label htmlFor="">temperament</label>
-                    <input type="text" value={form.temperament} onChange={changeHandler} name="temperament" />
-                    {errors.temperament && <span>{errors.temperament} </span>}
-                </div> */}
-                <label htmlFor="temperament">temperament</label>
-                <select id="temperament" onChange={changeHandler}>
-                    <option value="temperamentos"  onChange={changeHandler} >temperamentos</option>
-                    {temperaments.map(temperament => (
-                        <option key={temperament.id} value={temperament.id} >{temperament.name}</option>
-                    ))}
-                </select>
-                {errors.temperament && <span>{errors.temperament} </span>}
-                <button type="submit">SEND</button>
+                <button type="submit" className={style.boton}>SEND</button>
             </form>
         </div>
     )

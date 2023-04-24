@@ -1,0 +1,9 @@
+.select{
+    font-family: var(--parrafos);
+    background-color: var(--background);
+    height: 35px;
+    font-size: 25px;
+    line-height: 0;
+    border: 3px solid var(--negro);
+}
+

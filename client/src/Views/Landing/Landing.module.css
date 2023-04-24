@@ -1,0 +1,215 @@
+.landing {
+
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    overflow: hidden;
+    animation-name: landing;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(10)
+}
+.scanLines{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: .5;
+}
+.titulo {
+    position: absolute;
+    top: 30vh;
+    left: 50vw;
+    line-height: 0;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    animation-name: titulo;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(10)
+}
+.dogImg {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    padding: 5px;
+    mix-blend-mode: hard-light;
+    border-radius: 500px;
+    image-rendering: pixelated;
+}
+.boton {
+    background-color: var(--background);
+    border: 3px solid var(--negro);
+    padding: 10px 24px;
+    font-family: var(--parrafos);
+    text-decoration: none;
+    color: var(--negro);
+    font-size: 35px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    bottom: 0;
+    left: 50%;
+    animation-name: boton;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(10)
+}
+.boton:hover {
+    box-shadow: 5px 10px var(--negro);
+    transform: translate(-50%, -55%);
+}
+.dog1 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    top: 75%;
+    left: 15%;
+    animation-name: dog;
+    animation-duration: 10s;
+    animation-delay: 4s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4)
+}
+.dog2 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 20%;
+    animation-name: dog;
+    animation-duration: 10s;
+    animation-delay: 16s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4)
+}
+.dog3 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 70%;
+    animation-name: dog;
+    animation-duration: 10s;
+    animation-delay: 8s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4)
+}
+.dog4 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 20%;
+    left: 50%;
+    animation-name: dog;
+    animation-duration: 10s;
+    animation-delay: 12s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4)
+}
+.dog5 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 85%;
+    animation-name: dog;
+    animation-duration: 10s;
+    animation-delay: 7s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(4)
+}
+.dog6 {
+    position: absolute;
+    transform: translate(-50%, 40%) scale(3);
+    bottom: -50%;
+    left: 50%;
+    animation-name: dogG;
+    animation-duration: 10s;
+    animation-delay: 7s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: steps(8)
+}
+@keyframes dog {
+    0% {
+        opacity: 0;
+    }
+
+    33% {
+        opacity: 1;
+        
+    }
+
+    66% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes dogG {
+    0% {
+        opacity: 0;
+        bottom: -50%;
+    }
+
+    33% {
+        opacity: 1;
+        bottom: 0%;
+    }
+
+    66% {
+        opacity: 1;
+        bottom: 0%;
+    }
+
+    100% {
+        opacity: 0;
+        bottom: -50%;
+    }
+}
+@keyframes boton {
+    0% {
+        bottom: 0vh;
+        color: transparent;
+        background-color: transparent;
+        border: 3px solid transparent;
+    }
+
+    50% {
+        text-shadow: 5px 5px transparent;
+    }
+
+    100% {
+        bottom: 30vh;
+    }
+}
+@keyframes titulo {
+    0% {
+        top: 0vh;
+        color: transparent;
+        opacity: 0;
+    }
+
+    50% {
+        text-shadow: 5px 5px transparent;
+    }
+
+    100% {
+        opacity: 1;
+        top: 30vh;
+        color: var(--background);
+        text-shadow: 5px 5px var(--negro);
+    }
+}
+@keyframes landing {
+    0% {
+        background-color: var(--negro);
+    }
+    100% {
+        background-color: var(--naranja1);
+    }
+}

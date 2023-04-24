@@ -2,6 +2,9 @@ import Card from "../Card/Card"
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Paginado from "../Paginado/Paginado";
+import style from "./CardsContainer.module.css"
+import Spinner from "../Spinner/Spinner"
+
 
 const CardsContainer = () => {
 
@@ -15,11 +18,10 @@ const CardsContainer = () => {
         setCurrentPage(pageNumber)
     }
     return (
-
-
-
-        <div>
-            {currentdogs.map((dog) => {
+        
+        <div className={style.container}>
+            
+            {!currentdogs.length ? <Spinner />: currentdogs.map((dog) => {
                 return <Card
                     key={dog?.id}
                     id={dog?.id}
@@ -27,12 +29,14 @@ const CardsContainer = () => {
                     name={dog?.name}
                     temperament={dog?.temperament}
                     weight={dog?.weight}
+                    created={dog?.created}
                 />
             })}
             <Paginado
                 dogsPerPage={dogsPerPage}
                 dogs={Dogs.length}
                 paginado={paginado}
+                className={style.paginado}
             />
         </div>
     )

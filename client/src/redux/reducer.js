@@ -1,10 +1,10 @@
-import { GET_DOG, GET_DOGS, GET_TEMPERAMENTS, GET_DOG_BY_NAME, GET_ORDER, GET_ORIGIN, GET_ORDER_AZ,GET_DOG_BY_TEMPERAMENT, CLEAN_DETAIL } from "./actions";
+import { GET_DOG, GET_DOGS, GET_TEMPERAMENTS, GET_DOG_BY_NAME, GET_ORDER, GET_ORIGIN, GET_ORDER_AZ,GET_DOG_BY_TEMPERAMENT, CLEAN_DETAIL, DELETE_DOG } from "./actions";
 
 const initialState = {
     dogs: [],
     dog: {},
     temperaments: [],
-    dogName: []
+    dogName: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -27,6 +27,8 @@ const rootReducer = (state = initialState, action) => {
             return {...state, dogs: action.payload}
         case CLEAN_DETAIL:
             return {...state, dog: {}}
+        case DELETE_DOG:
+            return {...state, dogs: state.dogs.filter(dog=> dog.id === action.payload)}
         default:
             return { ...state };
     }

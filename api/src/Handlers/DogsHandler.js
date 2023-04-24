@@ -1,4 +1,4 @@
-const { getAllDogs, getDogById, getDogByName, createDog } = require("../controllers/DogsController")
+const { getAllDogs, getDogById, getDogByName, createDog, dogDelete } = require("../controllers/DogsController")
 
 
 const getDogsHandler = async (req, res) => {
@@ -36,9 +36,20 @@ const postDogHandler = async (req, res) => {
     return res.status(500).json({ error: error.message })
   }
 }
+const deleteDogHandler=async(req,res)=>{
+  try {
+      const {id}=req.params
+      const deleteDog=await dogDelete(id)
+      res.status(200).json(deleteDog)
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+
+}
 
 module.exports = {
   getDogsHandler,
   getDogByIdHandler,
   postDogHandler,
+  deleteDogHandler
 };

@@ -1,0 +1,13 @@
+.boton {
+    background-color: var(--marron);
+    border: 3px solid var(--negro);
+    padding: 2px 6px;
+    font-family: var(--parrafos);
+    text-decoration: none;
+    color: var(--negro);
+    font-size: 25px;
+}
+.boton:hover {
+    box-shadow: 2px 5px var(--negro);
+    transform: translate(0px, -2px);
+}

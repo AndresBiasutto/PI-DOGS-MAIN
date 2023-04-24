@@ -1,21 +1,24 @@
 import { useDispatch } from "react-redux"
 import { getOrigin, getDogs } from "../../redux/actions"
+import style from "./OriginFilter.module.css"
 
 const OriginFilter = () => {
     const dispatch = useDispatch()
+    const reset = () => {
+        return dispatch(getDogs())
+    }
     const handleStatus = (event) => {
         console.log(event.target.value)
         if (event.target.value === "") {
-            dispatch(getDogs())
+            return reset()
         }
         dispatch(getOrigin(event.target.value))
     };
 
     return (
-        <div>
-            <label htmlFor="originFilter">Origen</label>
-            <select name="originFilter" id="" onChange={handleStatus}>
-                <option value="">Sin orden</option>
+        <div className={style.container}>
+            <select name="originFilter" id="" onChange={handleStatus} className={style.select}>
+                <option value="">Origin: </option>
                 <option value="api">api</option>
                 <option value="bdd">bdd</option>
             </select>

@@ -1,0 +1,31 @@
+.contenedor{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 0;
+    height: 100px;
+    width: 1200px;
+}
+.boton {
+    background-color: var(--background);
+    border: 3px solid var(--negro);
+    padding: 2px 6px;
+    font-family: var(--parrafos);
+    text-decoration: none;
+    color: var(--negro);
+    font-size: 25px;
+    cursor: pointer;
+}
+.boton:hover {
+    box-shadow: 2px 5px var(--negro);
+    transform: translate(0px, -2px);
+}

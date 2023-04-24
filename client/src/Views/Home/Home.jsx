@@ -1,26 +1,27 @@
+import style from "./Home.module.css"
 import CardsContainer from "../../Components/CardsContainer/CardsContainer";
-import SearchBar from "../../Components/SearchBar/SearchBar";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getDogs } from "../../redux/actions";
 import OriginFilter from "../../Components/OriginFilter/OriginFilter";
 import OrderFilter from "../../Components/OrderFilter/OrderFilter";
 import AzFilter from "../../Components/AzFilter/AzFilter";
 import TemperamentsFilter from "../../Components/TemperamentsFilter/TemperamentsFilter";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getDogs } from "../../redux/actions";
 
 const Home = () => {
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getDogs())
-    },[dispatch])
+    }, [dispatch])
     return (
-        <div>
-            <SearchBar />
-            <OriginFilter />
-            <OrderFilter />
-            <AzFilter />
-            <TemperamentsFilter />
+        <div className={style.home}>
+            <div className={style.orderBar}>
+                <OriginFilter />
+                <OrderFilter />
+                <AzFilter />
+                <TemperamentsFilter />
+            </div>
             <CardsContainer />
         </div>
     )

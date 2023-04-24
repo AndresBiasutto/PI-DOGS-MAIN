@@ -1,0 +1,43 @@
+.navBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--naranja1);
+    height: 40px;
+}
+.navMenu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 500px;
+}
+.logo{
+    line-height: 0;
+    margin: 10px;
+    color: var(--background);
+    text-shadow: 2px 3px var(--negro);
+}
+.logoLink{
+    text-decoration: none;
+}
+.boton {
+    background-color: var(--background);
+    border: 3px solid var(--negro);
+    padding: 2px 6px;
+    font-family: var(--parrafos);
+    text-decoration: none;
+    color: var(--negro);
+    font-size: 25px;
+}
+.boton:hover {
+    box-shadow: 2px 5px var(--negro);
+    transform: translate(0px, -2px);
+}
+
+.navMain{
+    position: fixed;
+    width: 100%;
+    z-index: 200;
+}

@@ -9,6 +9,7 @@ export const GET_ORIGIN="GET_ORIGIN"
 export const GET_ORDER_AZ="GET_ORDER_AZ"
 export const GET_DOG_BY_TEMPERAMENT="GET_DOG_BY_TEMPERAMENT"
 export const CLEAN_DETAIL="CLEAN_DETAIL"
+export const DELETE_DOG="DELETE_DOG"
 
 export const getDogs = ()=> {
     return async (dispatch)=>{
@@ -57,6 +58,12 @@ export const getDogsByTemperament=(temporder)=>{
     return async (dispatch)=>{
         const apidata= (await axios.get(`http://localhost:3001/dogs/temporder?temporder=${temporder}`)).data
         dispatch({type: GET_DOG_BY_TEMPERAMENT, payload: apidata})
+    }
+}
+export const DeleteDog=(id)=>{
+    return async (dispatch)=>{
+        await axios.delete(`http://localhost:3001/dogs/delete/${id}`).data
+        dispatch({type: DELETE_DOG, payload: id})      
     }
 }
 export const cleanDetail=()=>{

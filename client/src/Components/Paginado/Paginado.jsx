@@ -1,3 +1,5 @@
+import style from "./Paginado.module.css"
+
 const Paginado = ({ dogsPerPage, dogs, paginado }) => {
     const pageNumbers = [];
   
@@ -6,11 +8,11 @@ const Paginado = ({ dogsPerPage, dogs, paginado }) => {
     }
   
     return (
-      <nav>
-        <ul>
+      <nav className={style.contenedor}>
+        <ul className={style.container}>
           {pageNumbers.map((number) => (
-            <li key={number}>
-              <button onClick={() => paginado(number)}>
+            <li key={number} className={style.li}>
+              <button onClick={() => paginado(number)} className={style.boton}>
                 {number}
               </button>
             </li>

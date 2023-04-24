@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { getTemperaments } from "../../redux/actions"
 import { useSelector, useDispatch } from "react-redux"
 import { getDogsByTemperament, getDogs } from "../../redux/actions"
-
+import style from "./TemperamentsFilter.module.css"
 
 const TemperamentsFilter = () => {
     const dispatch= useDispatch()
@@ -23,9 +23,8 @@ const TemperamentsFilter = () => {
 
     return (
         <div>
-            <label htmlFor="TemperamentsFilter">Temperaments filter</label>
-            <select id="TemperamentsFilter"  onChange={onChange}>
-                    <option value="default">sin orden</option>
+            <select id="TemperamentsFilter"  onChange={onChange} className={style.select}>
+                    <option value="default">Temperaments: </option>
                     {temperaments.map(temperament => (
                         <option key={temperament.id} value={temperament.name} >{temperament.name}</option>
                     ))}

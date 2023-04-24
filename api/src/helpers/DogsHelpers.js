@@ -25,7 +25,21 @@ const dogFilter = async (apiData) => {
         weight: apiData.weight.metric,
         height: apiData.height.metric,
         life_span: apiData.life_span,
+        temperament:apiData.temperament,
         created: false
+    }
+}
+const dogFilterBDDId = (theDogBDD) => {
+    return {
+        id: theDogBDD.id,
+        name: theDogBDD.name,
+        image: theDogBDD.image,
+        weight: theDogBDD.weight,
+        height: theDogBDD.height,
+        life_span: theDogBDD.life_span,
+        temperament: theDogBDD.Temperaments[0].name,
+        created: true,
+
     }
 }
 const dogFilterBDD = (allDogsBDD) => {
@@ -56,4 +70,4 @@ const dogFilterBDDbyName = (allDogsBDD) => {
     })
 }
 
-module.exports = { dogsFilter, dogFilter, dogFilterBDD, dogFilterBDDbyName };
+module.exports = { dogsFilter, dogFilter, dogFilterBDD, dogFilterBDDbyName, dogFilterBDDId };
