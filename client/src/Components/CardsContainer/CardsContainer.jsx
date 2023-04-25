@@ -18,10 +18,10 @@ const CardsContainer = () => {
         setCurrentPage(pageNumber)
     }
     return (
-        
+
         <div className={style.container}>
-            
-            {!currentdogs.length ? <Spinner />: currentdogs.map((dog) => {
+
+            {!currentdogs.length ? <Spinner /> : currentdogs.map((dog) => {
                 return <Card
                     key={dog?.id}
                     id={dog?.id}
@@ -32,6 +32,7 @@ const CardsContainer = () => {
                     created={dog?.created}
                 />
             })}
+            <p className={style.currentPage}> --- {currentPage} --- </p>
             <Paginado
                 dogsPerPage={dogsPerPage}
                 dogs={Dogs.length}

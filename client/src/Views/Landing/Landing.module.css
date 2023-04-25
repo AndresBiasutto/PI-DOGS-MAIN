@@ -63,8 +63,8 @@
     position: absolute;
     transform: translate(-50%, -50%);
     opacity: 0;
-    top: 75%;
-    left: 15%;
+    top: 70%;
+    left: 25%;
     animation-name: dog;
     animation-duration: 10s;
     animation-delay: 4s;
