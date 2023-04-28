@@ -10,7 +10,6 @@ const getOriginHandler = async (req, res) => {
     }
 
 }
-
 const getOrderHandler = async (req, res) => {
     try {
         const { orderby } = req.query

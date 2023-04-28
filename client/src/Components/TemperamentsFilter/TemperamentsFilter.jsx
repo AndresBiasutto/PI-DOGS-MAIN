@@ -14,7 +14,6 @@ const TemperamentsFilter = () => {
     const temperaments= useSelector(state=>state.temperaments)
 
     const onChange=(event)=>{
-        console.log(event.target.value)
         if (event.target.value === "default") {
             dispatch(getDogs())
         }

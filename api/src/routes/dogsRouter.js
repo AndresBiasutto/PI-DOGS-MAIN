@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const { getDogsHandler, getDogByIdHandler, postDogHandler , deleteDogHandler} = require("../Handlers/DogsHandler");
 const {getOriginHandler, getOrderHandler, getAZOrderHandler,getTempOrderHandler} = require("../Handlers/FiltersHandler")
-const { postValidator, idValidator, nameValidator } = require("../middlewares/validators")
+const { postValidator } = require("../middlewares/validators")
 
 const dogsRouter = Router();
 
@@ -11,7 +11,7 @@ dogsRouter.get("/order", getOrderHandler)
 dogsRouter.get("/origin", getOriginHandler)
 dogsRouter.get("/", getDogsHandler);
 dogsRouter.get("/:id", getDogByIdHandler);
-dogsRouter.post("/", postDogHandler);
+dogsRouter.post("/",postValidator, postDogHandler);
 dogsRouter.delete("/delete/:id", deleteDogHandler)
 
 module.exports = dogsRouter;
