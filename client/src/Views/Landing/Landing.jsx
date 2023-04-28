@@ -20,6 +20,7 @@ const Landing = () => {
             <img src={scanlines} alt="dog1" className={style.scanLines} />
             <h1 className={style.titulo}>DOGS API</h1>
             <Link to={"/home"} className={style.boton}>watch all dogs</Link>
+            <p className={style.p}>PI Henry Dogs, creado con mucho ❤️ por <span className={style.span}>Andrés Biasutto</span></p>
         </div>
     )
 }

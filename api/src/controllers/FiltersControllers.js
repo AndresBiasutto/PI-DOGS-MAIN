@@ -16,6 +16,7 @@ const orderByWeight = async (orderby) => {
 
     return order
 }
+
 const namesInOrder= async (azorder)=>{
      const allDogs= await getAllDogs()
      const dogsReady= filterDogaz(allDogs)
@@ -24,6 +25,7 @@ const namesInOrder= async (azorder)=>{
 
     return order
 }
+
 const findTemperament= async(temporder)=>{
     const allDogs= await getAllDogs()
     const dogsReady= filterDogaz(allDogs)
@@ -37,4 +39,5 @@ const findTemperament= async(temporder)=>{
 
     return listo
 }
+
 module.exports = { filterOrigin, orderByWeight, namesInOrder, findTemperament}

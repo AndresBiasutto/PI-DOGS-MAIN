@@ -132,6 +132,22 @@
     animation-iteration-count: infinite;
     animation-timing-function: steps(8)
 }
+.p{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    opacity: 0;
+    animation-name: p;
+    animation-duration: 4s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(4)
+}
+.span{
+    color: var(--verde);
+}
 @keyframes dog {
     0% {
         opacity: 0;
@@ -211,5 +227,13 @@
     }
     100% {
         background-color: var(--naranja1);
+    }
+}
+@keyframes p {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
