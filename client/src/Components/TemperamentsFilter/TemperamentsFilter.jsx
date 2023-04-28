@@ -6,11 +6,6 @@ import style from "./TemperamentsFilter.module.css"
 
 const TemperamentsFilter = () => {
     const dispatch= useDispatch()
-
-    useEffect(()=>{
-        dispatch(getTemperaments())
-    },[dispatch])
-
     const temperaments= useSelector(state=>state.temperaments)
 
     const onChange=(event)=>{
@@ -19,6 +14,10 @@ const TemperamentsFilter = () => {
         }
         dispatch(getDogsByTemperament(event.target.value))
     }
+    
+    useEffect(()=>{
+        dispatch(getTemperaments())
+    },[dispatch])
 
     return (
         <div>

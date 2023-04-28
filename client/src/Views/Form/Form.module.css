@@ -68,6 +68,11 @@
     font-size: 25px;
 }
 
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .boton:hover {
     box-shadow: 2px 5px var(--negro);
     transform: translate(0px, -2px);

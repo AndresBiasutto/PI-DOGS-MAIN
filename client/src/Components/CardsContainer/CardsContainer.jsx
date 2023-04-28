@@ -17,6 +17,12 @@ const CardsContainer = () => {
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
+    const prevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+    const nextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
     return (
 
         <div className={style.container}>
@@ -32,11 +38,14 @@ const CardsContainer = () => {
                     created={dog?.created}
                 />
             })}
-            <p className={style.currentPage}> --- {currentPage} --- </p>
+            <p className={style.currentPage}> -- {currentPage} -- </p>
             <Paginado
                 dogsPerPage={dogsPerPage}
                 dogs={Dogs.length}
+                currentPage={currentPage}
                 paginado={paginado}
+                prevPage={prevPage}
+                nextPage={nextPage}
                 className={style.paginado}
             />
         </div>

@@ -34,14 +34,6 @@ const Form = () => {
         maxLife_span: "",
         temperament: ""
     })
-
-    const changeHandler = (e) => {
-        const property = e.target.name;
-        const value = e.target.value;
-        setForm({ ...form, [property]: value })
-        validateForm({ ...form, [property]: value }, setErrors)
-    }
-
     const formatDog = (form) => {
         return {
             name: form.name,
@@ -52,6 +44,14 @@ const Form = () => {
             temperament: form.temperament
         }
 
+    }
+
+    const changeHandler = (e) => {
+        const property = e.target.name;
+        const value = e.target.value;
+        setForm({ ...form, [property]: value })
+        validateForm({ ...form, [property]: value }, setErrors)
+        console.log(errors)
     }
 
     useEffect(() => {
@@ -168,7 +168,7 @@ const Form = () => {
                     </select>
                     {errors.temperament && <span className={style.span}>{errors.temperament} </span>}
                 </div>
-                <button type="submit" className={style.boton}>SEND</button>
+                 <button type="submit" className={`${style.boton} ${errors.name || errors.image || errors.minWeight || errors.maxWeight || errors.minHeight || errors.maxHeight || errors.minLife_span || errors.maxLife_span ? style.disabled: style.button}`}>SEND</button>
             </form>
         </div>
     )
